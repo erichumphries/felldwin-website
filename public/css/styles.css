@@ -1,0 +1,57 @@
+.color-1 {
+    color: #F1E0C5;
+}
+
+.color-2 {
+    color: #C9B79C;
+}
+
+.color-3 {
+    color: #71816D;
+}
+
+.color-4 {
+    color: #342A21;
+}
+
+.color-5 {
+    color: #DA667B;
+}
+
+body {
+    background-color: #71816D;
+    color: #342A21;
+}
+
+a:hover {
+    color: #DA667B;
+}
+
+a {
+    color: #342A21;
+    text-decoration: none;
+}
+
+.bg-card {
+    background-color:#F1E0C5;
+}
+
+.bg-navbar {
+    background-color: #29524A;
+}
+
+.card {
+    background-color:#94A187;
+}
+@media (min-width: 991.98px) {
+    main {
+    padding-left: 240px;
+    }
+}
+
+
+
+body{
+    background: #f5f6fa;
+}
+

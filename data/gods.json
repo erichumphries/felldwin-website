@@ -1,0 +1,118 @@
+{
+    "title": "Gods and Goddesses",
+    "desc": "List of the Gods and Goddesses of Felldwin",
+    "creationMyth": "The method by which the world of Felldwin was created is hotly debated across the entire world. The contention is to the point that even different cities in the same country have different options on how the world came to be.",
+    "gods" : {
+        "length": 8,
+        "0": {
+            "name": "Adea",
+            "type": "Goddess",
+            "picture": "pictures/adea.png",
+            "associations": {
+                "length": 9,
+                "0": "seasons",
+                "1": "the moon",
+                "2": "storms",
+                "3": "the sea",
+                "4": "the land",
+                "5": "darkness",
+                "6": "the sky",
+                "7": "light",
+                "8": "the sun"
+            }
+        }, "1": {
+            "name": "Adum",
+            "type": "God",
+            "picture": "pictures/adum.png",
+            "associations": {
+                "length": 6,
+                "0": "animals",
+                "1": "plants",
+                "2": "forests",
+                "3": "wild nature",
+                "4": "the hunt",
+                "5": "agriculture"
+            }
+        }, "2": {
+            "name": "Tova",
+            "type": "Goddess",
+            "picture": "pictures/tova.png",
+            "associations": {
+                "length": 6,
+                "0": "magic",
+                "1": "mages",
+                "2": "divination",
+                "3": "illusions",
+                "4": "knowledge",
+                "5": "curses"
+            }
+        }, "3": {
+            "name": "Photune",
+            "type": "Goddess",
+            "picture": "pictures/photune.png",
+            "associations": {
+                "length": 6,
+                "0": "fate",
+                "1": "death",
+                "2": "life",
+                "3": "birth",
+                "4": "renewal",
+                "5": "the dead"
+            }
+        }, "4": {
+            "name": "Zudos",
+            "type": "God",
+            "picture": "pictures/zudos.png",
+            "associations": {
+                "length": 8,
+                "0": "peace",
+                "1": "protection",
+                "2": "justice",
+                "3": "war",
+                "4": "courage",
+                "5": "tyranny",
+                "6": "murder",
+                "7": "cowardess"
+            }
+        }, "5": {
+            "name": "Saren",
+            "type": "Goddess",
+            "picture": "pictures/saren.png",
+            "associations": {
+                "length": 9,
+                "0": "joy",
+                "1": "love",
+                "2": "beauty",
+                "3": "good fortune",
+                "4": "misfortune",
+                "5": "lies",
+                "6": "pain",
+                "7": "loss",
+                "8": "self-sacrifice"
+            }
+        }, "6": {
+            "name": "Cyesis",
+            "type": "God",
+            "picture": "pictures/cyesis.png",
+            "associations": {
+                "length": 4,
+                "0": "medicine",
+                "1": "endurance",
+                "2": "disease",
+                "3": "poison"
+            }
+        }, "7": {
+            "name": "Biros",
+            "type": "God",
+            "picture": "pictures/biros.png",
+            "associations": {
+                "length": 5,
+                "0": "crafting",
+                "1": "writing",
+                "2": "poetry",
+                "3": "song",
+                "4": "trade"
+            }
+        }
+    }
+}
