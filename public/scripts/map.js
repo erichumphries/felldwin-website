@@ -84,31 +84,42 @@ async function setup() {
         countries = json
 
         // Setting up the html
-        document.getElementById('countries').innerHTML = `
-            <h1 class="sidebar-header">
-                Countries
-            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-            </h1>
-            <p class="lorem mt-3">${countries.intro}</p>
-            <hr>`
+        var paragraph = document.createElement('p')
+        paragraph.classList = 'lorem mt-3'
+        paragraph.innerHTML = countries.intro
+        document.getElementById('countries').appendChild(paragraph)
+        document.getElementById('countries').appendChild(document.createElement('hr'))
 
         var countryListDiv = document.createElement('div')
         countryListDiv.classList = "animate__animated"
         countryListDiv.innerHTML = `<h5>${countries.desc}</h5>`
 
+        var countryListParagraph = document.createElement('p')
+        countryListParagraph.innerHTML = countries.info
+        countryListDiv.appendChild(countryListParagraph)
+
+        countries = countries.countries
         var countryList = document.createElement('ul')
         countryList.classList = "countries-list"
         for (var i = 0; i < countries.length; i++) (function (i) {
             var listItem = document.createElement('li')
-            listItem.innerHTML = `<a href="#${countries[i].name.toLowerCase().split(" ").join("-")}" onclick='countryClicked(${i}, false, -1)' >${countries[i].name}</a>`
+            listItem.innerHTML = `<a href="#" onclick='countryClicked(${i}, false, -1)' >${countries[i].name}</a>`
             countryList.appendChild(listItem)
         })(i)
         countryListDiv.appendChild(countryList)
         document.getElementById('countries').appendChild(countryListDiv)
 
-        document.getElementById('countries').innerHTML += `
-            <div hidden class="animate__animated" id="country"></div>
-            <div hidden class="animate__animated" id="city"></div>`
+        var countryDiv = document.createElement('div')
+        countryDiv.hidden = true
+        countryDiv.classList = "animate__animated"
+        countryDiv.id = "country"
+        document.getElementById('countries').appendChild(countryDiv)
+
+        var cityDiv = document.createElement('div')
+        cityDiv.hidden = true
+        cityDiv.classList = "animate__animated"
+        cityDiv.id = "city"
+        document.getElementById('countries').appendChild(cityDiv)
 
         const mapList = document.getElementById("countries").getElementsByTagName("div")[0]
         const countryValue = document.getElementById("countries").getElementsByTagName("div")[1]
@@ -177,7 +188,7 @@ async function setup() {
                 var endUrl;
                 if (cityIndex !== -1) {
                     endUrl = countries[index].cities[cityIndex].name.toLowerCase().split(" ").join("-")
-                    cityValue.innerHTML = `<p><a href='#${countries[index].name.toLowerCase().split(" ").join("-")}' onclick="countryBack(1, 2);">Back to ${countries[index].name}</a></p>
+                    cityValue.innerHTML = `<p><a href='#' onclick="countryBack(1, 2);">Back to ${countries[index].name}</a></p>
                                         <h3>${countries[index].cities[cityIndex].name}</h3>
                                         <p>${countries[index].cities[cityIndex].desc}</p>`
                     if (mapList.hidden) {
@@ -198,10 +209,8 @@ async function setup() {
                     if (!fromMap)
                         map.setView(JSON.parse(countries[index].center), 4)
                 }
-                window.location.href = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/#${endUrl}`
             } else if (fromMap) { // This happens if the current country that is clicked on is from the map and a city is loaded
                 displayCountryData(index)
-                window.location.href = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/#${countries[index].name.toLowerCase().split(" ").join("-")}`
                 if (cityValue.hidden)
                     countryAnimation(mapList, countryValue, fromMap)
                 else
@@ -210,7 +219,7 @@ async function setup() {
         }
 
         displayCountryData = function(index) {
-            countryValue.innerHTML = `<p><a href='#countries' onclick="countryBack(0, 1);">Back to Regions List</a></p>`
+            countryValue.innerHTML = `<p><a href='#' onclick="countryBack(0, 1);">Back to Regions List</a></p>`
             if (countries[index].name === "Odera") {
                 if (window.localStorage.getItem("odera-props") === null) {
                     window.localStorage.setItem("odera-props", "show,show,show")
@@ -219,7 +228,7 @@ async function setup() {
                 countryValue.innerHTML += `<h3>${countries[index].name}</h3>`
                 for (var i = 0; i < countries[index].desc.length; i++) (function(i) {
                     if (countries[index].desc[i].type === "text") {
-                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${0})" href="#history-desc" role="button" aria-expanded="false" aria-controls="history-desc">
+                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${0})" href="#" role="button" aria-expanded="false" aria-controls="history-desc">
                                                     <h5>${countries[index].desc[i].title}</h5></a>
                                                     `
                         let group = `<div class="collapse ${oderaProperties[0]}" id="history-desc">`
@@ -229,11 +238,11 @@ async function setup() {
                         group += `</div>`
                         countryValue.innerHTML += group
                     } else { // type === "list"
-                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${1})" href="#government-desc" role="button" aria-expanded="false" aria-controls="government-desc">
+                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${1})" href="#" role="button" aria-expanded="false" aria-controls="government-desc">
                             <h5>${countries[index].desc[i].title}</h5></a>`
                         let list = `<div class="collapse ${oderaProperties[1]}" id="government-desc"><ul>`
                         for (var j = 0; j < countries[index].desc[i].list.length; j++) (function(j) {
-                            list += `<li><a href='#${countries[index].desc[i].list[j].title.toLowerCase().split(" ").join("-")}' onclick="countryDataList(${index}, ${i}, ${j}, false)">${countries[index].desc[i].list[j].title}</a></li>`
+                            list += `<li><a href='#' onclick="countryDataList(${index}, ${i}, ${j}, false)">${countries[index].desc[i].list[j].title}</a></li>`
                         })(j)
                         list += `</ul></div>`
                         countryValue.innerHTML += list
@@ -241,11 +250,11 @@ async function setup() {
                 })(i)
                 // creates the list of cities
                 if (countries[index].cities.length > 0) {
-                    countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${2})" href="#cities-desc" role="button" aria-expanded="false" aria-controls="cities-desc">
+                    countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${2})" href="#" role="button" aria-expanded="false" aria-controls="cities-desc">
                                                 <h5>Cities</h5></a>`
                     let list = `<div class="collapse ${oderaProperties[2]}" id="cities-desc"><ul>`
                     for (var i = 0; i < countries[index].cities.length; i++) (function(i) {
-                        list += `<li><a href="#${countries[index].cities[i].name.toLowerCase().split(" ").join("-")}" onclick="countryClicked(${index}, true, ${i})" >${countries[index].cities[i].name}</a></li>`
+                        list += `<li><a href="#" onclick="countryClicked(${index}, true, ${i})" >${countries[index].cities[i].name}</a></li>`
                     })(i)
                     list += `</ul></div>`
                     countryValue.innerHTML += list
@@ -257,7 +266,7 @@ async function setup() {
         }
 
         countryDataList = function(countryIndex, descIndex, listIndex, fromStart) {
-            cityValue.innerHTML = `<p><a href="#${countries[countryIndex].name.toLowerCase().split(" ").join("-")}" onclick="countryBack(1, 2);">Back to ${countries[countryIndex].name}</a></p>
+            cityValue.innerHTML = `<p><a href="#" onclick="countryBack(1, 2);">Back to ${countries[countryIndex].name}</a></p>
                                         <h3>${countries[countryIndex].desc[descIndex].list[listIndex].title}</h3>`
             if (fromStart) {
                 displayCountryData(countryIndex)
@@ -306,14 +315,12 @@ async function setup() {
 
         const godsData = json
 
-        document.getElementById('gods').innerHTML = `
-            <h1 class="sidebar-header">
-                ${godsData.title}
-                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-            </h1>
-            <p class="lorem mt-3">${godsData.creationMyth}</p>
-            <hr>`
-
+        var paragraph = document.createElement('p')
+        paragraph.classList = 'lorem mt-3'
+        paragraph.innerHTML = godsData.creationMyth
+        document.getElementById('gods').appendChild(paragraph)
+        document.getElementById('gods').appendChild(document.createElement('hr'))
+        
         var godsListDiv = document.createElement('div')
         godsListDiv.classList = "animate__animated"
         godsListDiv.innerHTML = `<h5>${godsData.desc}</h5>`
@@ -322,13 +329,16 @@ async function setup() {
         godsList.classList = "gods-list"
         for (var j = 0; j < godsData.gods.length; j++) (function (j) {
             var listItem = document.createElement('li')
-            listItem.innerHTML = `<a href='#${godsData.gods[j].name.toLowerCase()}' onclick='godsClicked(${j})' >${godsData.gods[j].name}</a>`
+            listItem.innerHTML = `<a href='#' onclick='godsClicked(${j})' >${godsData.gods[j].name}</a>`
             godsList.appendChild(listItem)
         })(j)
         godsListDiv.appendChild(godsList)
         document.getElementById('gods').appendChild(godsListDiv)
 
-        document.getElementById('gods').innerHTML += `<div hidden class="animate__animated"></div>`
+        var div = document.createElement('div')
+        div.hidden = true
+        div.classList = 'animate__animated'
+        document.getElementById('gods').appendChild(div)
 
         godsList = document.getElementById("gods").getElementsByTagName("div")[0]
         godValue = document.getElementById("gods").getElementsByTagName("div")[1]
@@ -344,7 +354,7 @@ async function setup() {
                     associations += `${godsData.gods[index].associations[k]}, `
                 }
             }
-            godValue.innerHTML = `<p><a href='#gods' onclick="godsBack();">Back to list of Gods and Goddesses</a></p>
+            godValue.innerHTML = `<p><a href='#' onclick="godsBack();">Back to list of Gods and Goddesses</a></p>
                                     <h3>${godsData.gods[index].name}</h3>
                                     <p>The ${godsData.gods[index].type} of ${associations}</p>
                                     <img src="${godsData.gods[index].picture}">`
@@ -367,47 +377,12 @@ async function setup() {
         godsBack = function() {
             animateRightLeave(godsList, godValue)
         }
-    })
 
-    var url = window.location.href
-    if (url !== undefined) { // we need to find an anchor tag with this value
-        // first, it manually checks for the two default options
-        var tag = url.split("/")[url.split("/").length - 1]
-        if (tag === "#gods") {
-            sidebar.open("gods")
-        } else if (tag === "#countries") {
-            sidebar.open("countries")
-        }
-        else {
-            const anchors = document.getElementsByTagName('a')
-            for (var i = 0; i < anchors.length; i++) {
-                // Issues: Doesn't currently have everything that could have called it; just the ones currently in-scope
-                if (anchors[i].href === url) {
-                    const anchorFunction = eval( anchors[i].getAttribute('onclick') )
-                    break;
-                }
-            }
-            if (document.getElementById("sidebar").classList.contains("collapsed")) {
-                await fetch('/table.json', {method: 'GET'})
-                .then(function(response) { return response.json(); })
-                .then(function(json) {
-                    for (var i = 0; i < json.list.length; i++) {
-                        if (url.includes(json.list[i][0])) {
-                            console.log(json.list[i][1])
-                            const anchorFunction = eval( json.list[i][1] )
-                            console.log(anchorFunction)
-                            break;
-                        }
-                    }
-                })
-            }
-        }
-    }
+    })
 
 }
 
 setup()
-
 
 /*
 //  This code was used to record the borders of a country. It works by recording all the points the user has clicked at, then
