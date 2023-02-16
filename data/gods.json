@@ -2,9 +2,8 @@
     "title": "Gods and Goddesses",
     "desc": "List of the Gods and Goddesses of Felldwin",
     "creationMyth": "The method by which the world of Felldwin was created is hotly debated across the entire world. The contention is to the point that even different cities in the same country have different options on how the world came to be.",
-    "gods" : {
-        "length": 8,
-        "0": {
+    "gods" : [
+        {
             "name": "Adea",
             "type": "Goddess",
             "picture": "pictures/adea.png",
@@ -20,7 +19,7 @@
                 "7": "light",
                 "8": "the sun"
             }
-        }, "1": {
+        }, {
             "name": "Adum",
             "type": "God",
             "picture": "pictures/adum.png",
@@ -33,7 +32,7 @@
                 "4": "the hunt",
                 "5": "agriculture"
             }
-        }, "2": {
+        }, {
             "name": "Tova",
             "type": "Goddess",
             "picture": "pictures/tova.png",
@@ -46,7 +45,7 @@
                 "4": "knowledge",
                 "5": "curses"
             }
-        }, "3": {
+        }, {
             "name": "Photune",
             "type": "Goddess",
             "picture": "pictures/photune.png",
@@ -59,7 +58,7 @@
                 "4": "renewal",
                 "5": "the dead"
             }
-        }, "4": {
+        }, {
             "name": "Zudos",
             "type": "God",
             "picture": "pictures/zudos.png",
@@ -74,7 +73,7 @@
                 "6": "murder",
                 "7": "cowardess"
             }
-        }, "5": {
+        }, {
             "name": "Saren",
             "type": "Goddess",
             "picture": "pictures/saren.png",
@@ -90,7 +89,7 @@
                 "7": "loss",
                 "8": "self-sacrifice"
             }
-        }, "6": {
+        }, {
             "name": "Cyesis",
             "type": "God",
             "picture": "pictures/cyesis.png",
@@ -101,7 +100,7 @@
                 "2": "disease",
                 "3": "poison"
             }
-        }, "7": {
+        }, {
             "name": "Biros",
             "type": "God",
             "picture": "pictures/biros.png",
@@ -114,5 +113,5 @@
                 "4": "trade"
             }
         }
-    }
+    ]
 }
