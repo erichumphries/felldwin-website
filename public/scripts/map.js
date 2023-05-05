@@ -228,7 +228,7 @@ async function setup() {
                 countryValue.innerHTML += `<h3>${countries[index].name}</h3>`
                 for (var i = 0; i < countries[index].desc.length; i++) (function(i) {
                     if (countries[index].desc[i].type === "text") {
-                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${0})" href="#" role="button" aria-expanded="false" aria-controls="history-desc">
+                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${0})" href="#history-desc" role="button" aria-expanded="false" aria-controls="history-desc">
                                                     <h5>${countries[index].desc[i].title}</h5></a>
                                                     `
                         let group = `<div class="collapse ${oderaProperties[0]}" id="history-desc">`
@@ -238,7 +238,7 @@ async function setup() {
                         group += `</div>`
                         countryValue.innerHTML += group
                     } else { // type === "list"
-                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${1})" href="#" role="button" aria-expanded="false" aria-controls="government-desc">
+                        countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${1})" href="#government-desc" role="button" aria-expanded="false" aria-controls="government-desc">
                             <h5>${countries[index].desc[i].title}</h5></a>`
                         let list = `<div class="collapse ${oderaProperties[1]}" id="government-desc"><ul>`
                         for (var j = 0; j < countries[index].desc[i].list.length; j++) (function(j) {
@@ -250,7 +250,7 @@ async function setup() {
                 })(i)
                 // creates the list of cities
                 if (countries[index].cities.length > 0) {
-                    countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${2})" href="#" role="button" aria-expanded="false" aria-controls="cities-desc">
+                    countryValue.innerHTML += `<a data-bs-toggle="collapse" onclick="updateProperties(${2})" href="#cities-desc" role="button" aria-expanded="false" aria-controls="cities-desc">
                                                 <h5>Cities</h5></a>`
                     let list = `<div class="collapse ${oderaProperties[2]}" id="cities-desc"><ul>`
                     for (var i = 0; i < countries[index].cities.length; i++) (function(i) {

@@ -1,30 +1,5 @@
-.color-1 {
-    color: #F1E0C5;
-}
-
-.color-2 {
-    color: #C9B79C;
-}
-
-.color-3 {
-    color: #71816D;
-}
-
-.color-4 {
-    color: #342A21;
-}
-
-.color-5 {
-    color: #DA667B;
-}
-
-body {
-    background-color: #71816D;
-    color: #342A21;
-}
-
 a:hover {
-    color: #DA667B;
+    color: #75b635;
 }
 
 a {
@@ -40,18 +15,23 @@ a {
     background-color: #29524A;
 }
 
-.card {
-    background-color:#94A187;
-}
-@media (min-width: 991.98px) {
-    main {
-    padding-left: 240px;
-    }
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #71816D;
+    color: #342A21;
 }
 
-
-
-body{
-    background: #f5f6fa;
+html, body, #map {
+    height: 100%;
+    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
+.lorem {
+    font-style: italic;
+    color: #AAA;
+}
+
+.leaflet-container {
+    background-color:rgba(255,0,0,0.0);
+}
