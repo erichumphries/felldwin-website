@@ -3,10 +3,10 @@ var tiles = L.tileLayer(`maptiles/{z}/{x}/{y}.png`, {});
 var map = L.map('map', {
     crs: L.CRS.Simple,
     layers: [tiles],
-    minZoom: 3,
+    minZoom: 2,
     maxZoom: 5,
     center: [-56, 100],
-    zoom: 1,
+    zoom: 0.5,
     zoomDelta: 1,
     wheelPxPerZoomLevel: 128
 });
